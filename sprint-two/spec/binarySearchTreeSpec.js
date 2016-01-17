@@ -37,4 +37,12 @@ describe('binarySearchTree', function() {
     console.log(array);
     expect(array).to.eql([5,2,3]);
   });
+  
+  it('should return the closest number in the tree when given a value using "closestValue"', function() {
+    binarySearchTree.insert(20);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(11);
+    binarySearchTree.insert(6);
+    expect(binarySearchTree.closestValue(8)).to.eql(6);
+  });
 });

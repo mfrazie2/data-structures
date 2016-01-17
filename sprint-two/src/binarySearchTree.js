@@ -55,6 +55,34 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
   }
 };
 
+BinarySearchTree.prototype.closestValue = function(value) {
+  //do work son
+  var closestSoFar = {'difference': null, 'closest' : null}
+  this.depthFirstLog(function(currentValue){
+  
+    var diff;
+    
+    if(value > currentValue){
+      diff = value - currentValue;
+    }else{
+      diff = currentValue - value;    
+    }
+    if(closestSoFar.difference === null){
+      closestSoFar.difference = diff;
+      closestSoFar.closes = currentValue;
+    }else if(diff < closestSoFar.difference){
+      closestSoFar.difference = diff;
+      closestSoFar.closest = currentValue;
+    }
+  });
+  
+  return closestSoFar.closest;
+  
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
+ insert = O(n)
+ contains = O(n)
+ depthFirstLog = O(n) 
  */
