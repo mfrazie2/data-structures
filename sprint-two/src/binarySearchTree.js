@@ -1,4 +1,4 @@
-//Prototypal Class
+//Prototypal Class Instantiation 
 var BinarySearchTree = function(value){
   var obj = Object.create(BinarySearchTree.prototype);
   obj.left = undefined;
@@ -22,12 +22,9 @@ BinarySearchTree.prototype.insert = function(value) {
       this.right = BinarySearchTree(value)
     }
   }
-  
-  //console.log(this.value);
 };
 
 BinarySearchTree.prototype.contains = function(value) {
-  
   
   if(value < this.value){
     if(this.left){
@@ -43,36 +40,21 @@ BinarySearchTree.prototype.contains = function(value) {
   
   if(this.value === value){
     return true;
-  }
-  
-  // if(this.value === value) {
-  //   return true;
-  // } else {
-  //   if(value < this.value) {
-  //     this.left.contains(value);
-  //   } else {
-  //     this.right.contains(value);
-  //   }
-  // }
-  
-  
-  
+  } 
   return false;
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(cb) {
-  
+ 
+  cb(this.value);
+  if(this.left) {
+    this.left.depthFirstLog(cb);
+  }
+  if(this.right){
+    this.right.depthFirstLog(cb);
+  }
 };
 
-
-var createChild = function(value) {
-  var child = {};
-  child.value = value;
-  child.left = null;
-  child.right = null;
-
-  return child;
-};
 /*
  * Complexity: What is the time complexity of the above functions?
  */
