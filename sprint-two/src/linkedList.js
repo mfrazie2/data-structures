@@ -7,9 +7,10 @@ var LinkedList = function(){
     var nodeToAdd = Node(value);
     if(list.head === null) {
       list.head = nodeToAdd;
-      list.tail = nodeToAdd;
     }
-    list.tail.next = nodeToAdd;
+    if(list.tail) {
+      list.tail.next = nodeToAdd;
+    }
     list.tail = nodeToAdd;
   };
 
@@ -19,20 +20,15 @@ var LinkedList = function(){
     return hold.value;
   };
 
-  list.contains = function(target){ //target is the value property of the nodes
-    //iterate the list
-    var result = false;
+  list.contains = function(target){
     var currentNode = list.head;
-    while(currentNode.next){
+    while(currentNode){
       if(currentNode.value === target) {
-        result = true;
+        return true;
       }
       currentNode = currentNode.next;
     }
-    if(currentNode.value === target) {
-      result = true;
-    }
-    return result;
+    return false;
   };
 
   return list;
