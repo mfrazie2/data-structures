@@ -2,17 +2,12 @@ var Tree = function(value){
   var newTree = {};
   newTree.value = value;
 
-  // your code here
   _.extend(newTree, treeMethods);
   
-  newTree.children = [];  // fix me
+  newTree.children = [];
 
   return newTree;
 };
-
-
-
-
 
 var treeMethods = {};
 
@@ -22,32 +17,33 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-  var result = false;
-  var checkTree = function(tree){
-    for(var i = 0; i < tree.children.length; i++){
-      if(tree.children[i].value === target){
-        result = true;
-      }
-      
-      if(tree.children[i].children){
-        checkTree(tree.children[i])
+  if(this.value === target) {
+    return true;
+  }
+  if(this.children.length > 0) {
+    for (var i = 0; i < this.children.length; i++) {
+      if (this.children[i].contains(target)) {
+        return true;
       }
     }
-  };
-  checkTree(this);
+  }
+  return false;
   
-  // for(var i = 0; i < this.children.length; i++) {
-  //   var curTree = this.children[i]
-
-  //   if(curTree.value === target) {
-  //     result = true;
-  //   } 
-  //   if(curTree.children) {
-  //     curTree.children.contains(target);
+  // Using subroutine for recursive call
+  // var result = false;
+  // var checkTree = function(tree){
+  //   for(var i = 0; i < tree.children.length; i++){
+  //     if(tree.children[i].value === target){
+  //       result = true;
+  //     }
+      
+  //     if(tree.children[i].children){
+  //       checkTree(tree.children[i])
+  //     }
   //   }
-  // }
-  
-  return result;
+  // };
+  // checkTree(this);
+  // return result;
 };
 
 
